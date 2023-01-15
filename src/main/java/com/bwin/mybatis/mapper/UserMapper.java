@@ -1,7 +1,7 @@
-package com.bwin.mybatisplus.mapper;
+package com.bwin.mybatis.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.bwin.mybatisplus.entity.User;
+import com.bwin.mybatis.entity.User;
 
 /**
  * @author McAfee

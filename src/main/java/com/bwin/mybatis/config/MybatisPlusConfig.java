@@ -1,4 +1,4 @@
-package com.bwin.mybatisplus.config;
+package com.bwin.mybatis.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author McAfee
  */
-@MapperScan("com.bwin.mybatisplus.mapper")
+@MapperScan("com.bwin.mybatis.mapper")
 @Configuration
 public class MybatisPlusConfig {
 

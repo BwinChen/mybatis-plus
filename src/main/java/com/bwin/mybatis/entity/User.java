@@ -1,4 +1,4 @@
-package com.bwin.mybatisplus.entity;
+package com.bwin.mybatis.entity;
 
 import lombok.Data;
 import java.time.LocalDateTime;

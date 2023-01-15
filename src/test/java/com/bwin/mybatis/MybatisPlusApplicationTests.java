@@ -1,7 +1,7 @@
-package com.bwin.mybatisplus;
+package com.bwin.mybatis;
 
-import com.bwin.mybatisplus.entity.User;
-import com.bwin.mybatisplus.mapper.UserMapper;
+import com.bwin.mybatis.entity.User;
+import com.bwin.mybatis.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
