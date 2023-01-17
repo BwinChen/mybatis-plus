@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS user;
+
 CREATE TABLE user (
                       id BIGINT(20) PRIMARY KEY NOT NULL COMMENT '主键',
                       name VARCHAR(30) DEFAULT NULL COMMENT '姓名',

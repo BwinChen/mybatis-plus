@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bwin.mybatis.mapper.MenuMapper">
+  <resultMap id="menuMap" type="Menu">
+    <id property="id" column="id"/>
+    <result property="name" column="name"/>
+    <result property="parentId" column="parent_id"/>
+    <collection property="children" ofType="Menu" select="selectMenus" column="{parentId=id}"/>
+  </resultMap>
+  <resultMap id="userMenuMap" type="Menu">
+    <id property="id" column="id"/>
+    <result property="name" column="name"/>
+    <result property="parentId" column="parent_id"/>
+    <collection property="children" ofType="Menu" select="selectChildren"  column="{parentId=id,ids=ids}"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, parent_id
+  </sql>
+  <select id="selectMenus" resultMap="menuMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    menu m
+    <where>
+      <choose>
+        <when test="parentId!=null">
+          and m.parent_id = #{parentId}
+        </when>
+        <otherwise>
+          and m.parent_id = 0
+        </otherwise>
+      </choose>
+    </where>
+  </select>
+  <select id="selectUserMenus" resultMap="userMenuMap">
+    SELECT
+    <include refid="Base_Column_List" />, '${ids}' as ids
+    FROM
+    menu m
+    where m.id IN
+    <foreach collection="ids.split(',')" index="index" item="id" separator="," close=")" open="(">
+      #{id}
+    </foreach>
+    and m.parent_id = 0
+  </select>
+  <select id="selectChildren" resultMap="userMenuMap">
+    SELECT
+    <include refid="Base_Column_List" />, '${ids}' as ids
+    FROM
+    menu m
+    where m.id IN
+    <foreach collection="ids.split(',')" index="index" item="id" separator="," close=")" open="(">
+      #{id}
+    </foreach>
+    and m.parent_id = #{parentId}
+  </select>
+</mapper>
